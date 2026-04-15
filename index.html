@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: white; }
+  </style>
+  <script
+    src="https://cdn.checkout.ventrata.com/v3/production/ventrata-checkout.min.js"
+    type="module"
+    data-config='{"apiKey":"ca4a8bee-eacd-444f-b1a4-5f554ab5bd6a","env":"test"}'>
+  </script>
+</head>
+<body>
+  <div style="width:100%; max-width:900px; margin:0 auto;">
+    <aside
+      ventrata-embedded-widget
+      style="display:block; width:100%; min-height:1100px;"
+      data-config='{"features":{"optionSelector":{"placement":"above-tickets","type":"expandable"}}}'>
+    </aside>
+  </div>
+</body>
+</html>
