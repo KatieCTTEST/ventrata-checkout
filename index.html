@@ -6,7 +6,18 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { width: 100%; background: white; overflow-x: hidden; }
-    #ventrata-wrap { width: 100%; max-width: 100%; padding: 0; }
+    #ventrata-wrap { width: 100%; max-width: 100%; }
+
+    /* Let the widget size itself — no forced min-height */
+    aside[ventrata-embedded-widget] {
+      display: block;
+      width: 100%;
+    }
+
+    /* Tighten up on mobile */
+    @media (max-width: 600px) {
+      html, body { font-size: 14px; }
+    }
   </style>
   <script
     src="https://cdn.checkout.ventrata.com/v3/production/ventrata-checkout.min.js"
@@ -15,20 +26,21 @@
   </script>
 </head>
 <body>
-  <div id="ventrata-wrap" style="width:100%;">
+  <div id="ventrata-wrap">
     <aside
       ventrata-embedded-widget
-      style="display:block; width:100%; min-height:500px;"
       data-config='{"features":{"optionSelector":{"placement":"above-tickets","type":"expandable"}}}'>
     </aside>
   </div>
   <script>
     function sendHeight() {
-      const h = document.body.scrollHeight;
+      const h = document.documentElement.scrollHeight;
       window.parent.postMessage({ type: 'ventrata-height', height: h }, '*');
     }
-    setInterval(sendHeight, 500);
+    // Send height as widget loads and on any resize
+    setInterval(sendHeight, 300);
     window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
   </script>
 </body>
 </html>
