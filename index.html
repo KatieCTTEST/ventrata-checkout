@@ -1,25 +1,41 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: white; }
-  </style>
-  <script
-    src="https://cdn.checkout.ventrata.com/v3/production/ventrata-checkout.min.js"
-    type="module"
-    data-config='{"apiKey":"ca4a8bee-eacd-444f-b1a4-5f554ab5bd6a","env":"test"}'>
-  </script>
-</head>
-<body>
-  <div style="width:100%; max-width:900px; margin:0 auto;">
-    <aside
-      ventrata-embedded-widget
-      style="display:block; width:100%; min-height:1100px;"
-      data-config='{"features":{"optionSelector":{"placement":"above-tickets","type":"expandable"}}}'>
-    </aside>
-  </div>
-</body>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            html, body { width: 100%; background: white; overflow-x: hidden; }
+          </style>
+      <script
+            src="https://cdn.checkout.ventrata.com/v3/production/ventrata-checkout.min.js"
+            type="module"
+            data-config='{"apiKey":"ca4a8bee-eacd-444f-b1a4-5f554ab5bd6a","env":"test"}'>
+      </script>
+  </head>
+  <body>
+      <div id="ventrata-wrap" style="width:100%;">
+            <aside
+                    ventrata-embedded-widget
+                    style="display:block; width:100%; min-height:1100px;"
+                    data-config='{"features":{"optionSelector":{"placement":"above-tickets","type":"expandable"}}}'>
+            </aside>aside>
+      </div>div>
+
+      <script>
+            // Send real height to parent (Wix) whenever content changes
+            function sendHeight() {
+                    const h = document.body.scrollHeight;
+                    window.parent.postMessage({ type: 'ventrata-height', height: h }, '*');
+            }
+            // Poll for height changes as widget loads and user interacts
+            setInterval(sendHeight, 500);
+            window.addEventListener('load', sendHeight);
+      </script>
+  </body>
+</html>
+      </script>
+  </body>
+      </style>
+  </head>
 </html>
