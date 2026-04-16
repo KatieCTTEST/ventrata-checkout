@@ -1,35 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { width: 100%; background: white; overflow-x: hidden; }
-</style>
-<script
+    #ventrata-wrap { width: 100%; max-width: 100%; padding: 0; }
+  </style>
+  <script
     src="https://cdn.checkout.ventrata.com/v3/production/ventrata-checkout.min.js"
     type="module"
-    data-config='{"apiKey":"YOUR_API_KEY","env":"production"}'>
-</script>
+    data-config='{"apiKey":"ca4a8bee-eacd-444f-b1a4-5f554ab5bd6a","env":"test"}'>
+  </script>
 </head>
 <body>
-<div id="ventrata-wrap" style="width:100%;">
-<aside
+  <div id="ventrata-wrap" style="width:100%;">
+    <aside
       ventrata-embedded-widget
-      style="display:block; width:100%; min-height:1100px;"
+      style="display:block; width:100%; min-height:500px;"
       data-config='{"features":{"optionSelector":{"placement":"above-tickets","type":"expandable"}}}'>
-</aside>
-</div>
- 
+    </aside>
+  </div>
   <script>
-    // Auto-resize — sends real height to parent iframe (Wix)
     function sendHeight() {
       const h = document.body.scrollHeight;
       window.parent.postMessage({ type: 'ventrata-height', height: h }, '*');
     }
     setInterval(sendHeight, 500);
     window.addEventListener('load', sendHeight);
-</script>
+  </script>
 </body>
 </html>
