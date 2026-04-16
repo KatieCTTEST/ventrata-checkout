@@ -6,38 +6,20 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { width: 100%; background: white; overflow-x: hidden; }
-    #ventrata-wrap { width: 100%; max-width: 100%; }
-
-    /* Let the widget size itself — no forced min-height */
-    aside[ventrata-embedded-widget] {
-      display: block;
-      width: 100%;
-    }
-
-    /* Tighten up on mobile */
-    @media (max-width: 600px) {
-      html, body { font-size: 14px; }
-    }
+    #ventrata-wrap { width: 100%; }
+    aside[ventrata-embedded-widget] { display: block; width: 100%; }
   </style>
-  <script
-    src="https://cdn.checkout.ventrata.com/v3/production/ventrata-checkout.min.js"
-    type="module"
-    data-config='{"apiKey":"ca4a8bee-eacd-444f-b1a4-5f554ab5bd6a","env":"test"}'>
-  </script>
+  <script src="https://cdn.checkout.ventrata.com/v3/production/ventrata-checkout.min.js" type="module" data-config='{"apiKey":"ca4a8bee-eacd-444f-b1a4-5f554ab5bd6a","env":"test"}'></script>
 </head>
 <body>
   <div id="ventrata-wrap">
-    <aside
-      ventrata-embedded-widget
-      data-config='{"features":{"optionSelector":{"placement":"above-tickets","type":"expandable"}}}'>
-    </aside>
+    <aside ventrata-embedded-widget></aside>
   </div>
   <script>
     function sendHeight() {
       const h = document.documentElement.scrollHeight;
       window.parent.postMessage({ type: 'ventrata-height', height: h }, '*');
     }
-    // Send height as widget loads and on any resize
     setInterval(sendHeight, 300);
     window.addEventListener('load', sendHeight);
     window.addEventListener('resize', sendHeight);
