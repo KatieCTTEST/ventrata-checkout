@@ -6,6 +6,7 @@
       <style>
             * { margin: 0; padding: 0; box-sizing: border-box; }
             html, body { width: 100%; background: white; overflow-x: hidden; }
+                #ventrata-wrap { width: 100%; max-width: 100%; padding: 0; }
           </style>
       <script
             src="https://cdn.checkout.ventrata.com/v3/production/ventrata-checkout.min.js"
@@ -17,7 +18,7 @@
       <div id="ventrata-wrap" style="width:100%;">
             <aside
                     ventrata-embedded-widget
-                    style="display:block; width:100%; min-height:1100px;"
+                    style="display:block; width:100%; min-height:500px;"
                     data-config='{"features":{"optionSelector":{"placement":"above-tickets","type":"expandable"}}}'>
             </aside>
       </div>
